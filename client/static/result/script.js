@@ -147,8 +147,8 @@ function page_bar(answer_map) {
     console.log(users);
     let answer_map = new Map();
 
-    for (let i = 1; i <= users.data.configurations.total_questions; i++) {
-        answer_map.set(i, JSON.parse(users.data.result.answer[i]));
+    for(let key in users.data.result.answer){
+        answer_map.set(key, JSON.parse(users.data.result.answer[key]));
     }
     console.log(answer_map);
     document.getElementById("score_marks").innerHTML = users.data.result.total_marks;

@@ -203,7 +203,12 @@ function save_result() {
             body: JSON.stringify(data)
         }
         fetch(url, params).then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data);
+                if(!data.error){
+                    window.location.href = window.location.href.slice(0,-5)+'result';
+                }
+            });
     });
 }
 
@@ -242,7 +247,7 @@ function page_bar(length) {
 
 (async () => {
     const users = await fetch_all();
-
+    console.log(users);
     solution_obj = users.data.configurations.solution;
     sessionStorage.setItem('min', users.data.configurations.time.min);
     sessionStorage.setItem('sec', users.data.configurations.time.sec);

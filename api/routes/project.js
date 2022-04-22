@@ -2,7 +2,7 @@ const chapter = require("../models/projectModel");
 
 exports.fetch_config = (req, res, next) => {
     chapter.findOne({ "configurations.project_name": req.body.table_name })
-        .select("configurations")
+        .select("configurations attempt")
         .exec()
         .then((result) => {
             res.status(201).json({
@@ -65,7 +65,7 @@ exports.save_result = (req, res, next) => {
 exports.fetch_result = (req, res, next) => {
     console.log(req.body);
     chapter.findOne({ "configurations.project_name": req.body.table_name })
-        .select("result configurations.total_questions configurations.pdf_url")
+        .select("result configurations.pdf_url")
         .exec()
         .then((result) => {
             res.status(201).json({
