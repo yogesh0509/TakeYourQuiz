@@ -28,9 +28,10 @@ exports.signup = (req, res, next) => {
 
                         User.save()
                             .then(result => {
-                                res.status(201).json({
-                                    message: "User created"
-                                });
+                                // res.status(201).json({
+                                //     message: "User created"
+                                // });
+                                res.redirect("/");
                             })
                             .catch(err => {
                                 res.status(500).json({

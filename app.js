@@ -22,15 +22,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/result", (req, res) =>{
-  res.render("result");
-})
+
 app.get("/", (req, res, next) => {
   if(req.cookies.access_token){
     res.clearCookie("access_token");
   }
   res.render('index', {Home_state : 'active', Dashboard_state: 'disabled', header: 'Login'});
-  next();
 });
 
 app.post("/login", User.login, (req, res)=>{
@@ -39,26 +36,29 @@ app.post("/login", User.login, (req, res)=>{
 
 app.get("/Signup", (req, res, next) => {
   res.render('signup', {header: "Create Your Account"});
-  next();
 });
+
+app.get("/result", (req, res) =>{
+  res.render("result");
+})
 
 app.use("/dashboard/", dashboardRoutes);
 app.use("/projectRoutes/", projectRoutes);
 
-// app.use((req, res, next) => {
-//   const error = new Error("Not found");
-//   error.status = 404;
-//   next(error);
-// });
+app.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
 
-// app.use((error, req, res, next) => {
-//   res.status(error.status || 500);
-//   res.json({
-//     error: {
-//       message: error.message
-//     }
-//   });
-// });
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
 
 app.listen(80, () => {
   console.log("The application started successfully");
