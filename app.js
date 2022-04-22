@@ -10,7 +10,7 @@ const projectRoutes = require("./api/routes/projectRoutes");
 const dashboardRoutes = require("./client/routes/dashboardRoutes");
 const User = require("./api/routes/user_routes");
 
-mongoose.connect('mongodb://localhost/MyProject', { useNewUrlParser: true });
+mongoose.connect('process.env.MONGODB_URI || mongodb://localhost/MyProject', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once('open', function () {
   console.log("Connected");
