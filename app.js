@@ -4,6 +4,8 @@ const path = require('path');
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser')
 
+const port = process.env.PORT || 3000
+
 const projectRoutes = require("./api/routes/projectRoutes");
 const dashboardRoutes = require("./client/routes/dashboardRoutes");
 const User = require("./api/routes/user_routes");
@@ -60,6 +62,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(80, () => {
+app.listen(port, () => {
   console.log("The application started successfully");
 })
