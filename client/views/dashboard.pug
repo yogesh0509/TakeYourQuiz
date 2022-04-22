@@ -1,5 +1,15 @@
 extends layout.pug
 
+block header 
+    style.
+        .form-control.is-invalid{
+        background-image: none;
+        }
+        .form-control.is-valid{
+        background-image: none;
+        }
+
+
 block content
     div(style='height: 300vh; background-color:#ebebeb')
         #collapseExample.collapse
@@ -14,6 +24,7 @@ block content
                         .mb-3
                             label.form-label(for='formFile') Choose pdf for your questions!!
                             input#formFile.form-control(type='file')
+                            .form-text(style="color:#971925;") Select a .pdf whose size is not greater than 50MB.
 
                         button.btn.btn-dark#submit.col-auto(type='submit' name='submit') Add New Project
         
@@ -39,23 +50,6 @@ block content
                                     a.btn.badge.bg-success(href='/dashboard/'+project.project_name+'/result') Result
                                 else 
                                     a.btn.badge.bg-primary(href='/dashboard/'+project.project_name+'/configurations') Continue
-
-
-    //- #offcanvasExample.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
-    //-     .offcanvas-header
-    //-         h5#offcanvasExampleLabel.offcanvas-title Add answer to your project
-    //-         button.btn-close.text-reset(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
-    //-     .offcanvas-body
-    //-         #add_answer
-    //-             select.form-select.answer-form.my-2(name='answer')
-    //-                 option(value='a') A
-    //-                 option(value='b') B
-    //-                 option(value='c') C
-    //-                 option(value='d') D
-
-    //-         button.btn.btn-dark.my-3#add(type='button') Add
-    //-         br
-    //-         button.btn.btn-dark.my-3#submit_answer(type='button') Submit
 
 
 block script

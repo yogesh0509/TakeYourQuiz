@@ -38,6 +38,9 @@ function form_data() {
         fetch(url, params).then(response => response.json())
             .then(data => {
                 console.log(data);
+                if(!data.error){
+                    location.reload();
+                }
             })
     });
 
@@ -80,65 +83,3 @@ Array.prototype.slice.call(forms).forEach((form) => {
         }
     })
 });
-
-// // document.querySelectorAll('.quiz').forEach((ele)=>{
-// //     ele.addEventListener('click', (event)=>{
-// //         location.href = "/work";
-// //         console.log(ele.parentNode.firstChild.innerHTML);
-// //     })
-// // });
-
-// const add = document.getElementById("add");
-// const submit_answer = document.getElementById("submit_answer");
-// const add_answer = document.getElementById("add_answer");
-// let project_name_answer;
-
-// document.querySelectorAll('.answer_badge').forEach((ele) => {
-//     ele.addEventListener('click', () => {
-//         project_name_answer = ele.id;
-//     })
-// })
-
-// add.addEventListener('click', () => {
-//     let select = document.createElement('select');
-//     select.classList.add('form-select');
-//     select.classList.add('answer-form');
-//     select.classList.add('my-2');
-//     select.setAttribute('name', 'answer');
-//     option_set = ['a', 'b', 'c', 'd'];
-//     for (ele of option_set) {
-//         let option = document.createElement('option');
-//         option.setAttribute('value', ele);
-//         option.innerHTML = ele.toUpperCase();
-//         select.appendChild(option);
-//     }
-//     document.getElementById("add_answer").appendChild(select);
-// });
-
-// submit_answer.addEventListener('click', () => {
-//     answer = [];
-//     document.querySelectorAll('.answer-form').forEach((ele) => {
-//         answer.push(ele.value);
-//     });
-
-//     url = "/projectRoutes/Add_Answer";
-//     return_AuthHeader.then((token_header) => {
-//         console.log(token_header);
-//         let data = {
-//             "answer": answer,
-//             "table_name": project_name_answer
-//         }
-//         params = {
-//             method: 'post',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'authorization': "bearer " + token_header.refresh_token
-//             },
-//             body: JSON.stringify(data)
-//         }
-//         fetch(url, params).then(response => response.json())
-//             .then(data => {
-//                 console.log(data);
-//             })
-//     });
-// })

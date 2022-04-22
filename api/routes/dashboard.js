@@ -15,15 +15,7 @@ exports.new_chapter = (req, res, next) => {
         .then(result => {
             res.status(200).json({
                 message: "Question Created successfully",
-                // created_question: {
-                //     _id: result._id,
-                //     name: result.name,
-                //     question_url: result.question_url,
-                //     user: result.users
-                //     //answer: result.answer,
-                //     //question_url: result.question_url,
-                //     //solution_url: result.solution_url
-                // }
+                result: result
             });
         })
         .catch(err => {
