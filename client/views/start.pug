@@ -1,0 +1,43 @@
+extends layout.pug 
+
+block header 
+    style.
+        .dropdown-menu {
+            max-height: 280px;
+            overflow-y: auto;
+        }
+block body
+
+    div(style='height: 100vh;background-color:#ebebeb')
+        ul.d-flex.nav.mx-4.p-3.pt-5#page-bar
+            div.ms-auto.d-flex#start_btn
+                span.display-6.mx-4#countdown(style="color:5ec490;") 
+                button.btn.btn-dark.btn-lg.mx-4#result(type='button' onclick='save_result()') Get Results
+
+        .bg-light.my-3.mx-5.p-3
+            .row 
+                .col-6
+                    #adobe-dc-view(style='height: 360px; width: 500px;')
+                .col-6
+                    .row.option_box.align-items-center.mt-5
+                            button.col-auto.btn.btn-light.mx-2.py-4.px-5.option(id='a' value='a' style="border: 1px dotted black" onclick=`check_answer(this)`) 
+                                .display-6 A 
+                            button.col-auto.btn.btn-light.mx-2.py-4.px-5.option(id='b' value='b' style="border: 1px dotted black" onclick=`check_answer(this)`) 
+                                .display-6 B
+                            button.col-auto.btn.btn-light.mx-2.py-4.px-5.option(id='c' value='c' style="border: 1px dotted black" onclick=`check_answer(this)`) 
+                                .display-6 C
+                            button.col-auto.btn.btn-light.mx-2.py-4.px-5.option(id='d' value='d' style="border: 1px dotted black" onclick=`check_answer(this)`) 
+                                .display-6 D
+                    .row.justify-content-end.m-5
+                        button.btn.btn-dark.col-auto#next(onclick="next_question()") NEXT
+                    .row 
+                        .col-auto.p-1 TOTAL MARKS:
+                        .col-auto.p-1#score_marks  
+                    .row
+                        .col-auto.p-1 TOTAL CORRECT ANSWER:
+                        .col-auto.p-1#score_correct_questions  
+
+
+block script 
+    script(src='https://documentcloud.adobe.com/view-sdk/main.js')
+    script(src='/static/start/script.js')

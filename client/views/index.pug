@@ -1,0 +1,34 @@
+extends layout.pug
+block header 
+    style.
+        .form-control.is-invalid{
+        background-image: none;
+        }
+        .form-control.is-valid{
+        background-image: none;
+        }
+
+block body
+    .bg-dark.bg-gradient.text-white(style='height: 100vh;')
+        .container.h-100
+            .row.h-100.justify-content-center.align-items-center.ms-5
+                .col-10.col-md-8.col-lg-6
+                    h1.display-3 #{header}
+                    br
+                    block form
+                        form.row.g-3.needs-validation(action='/login' method='post' Content-Type='application/x-www-form-urlencoded' novalidate='' )
+                            .mb-3
+                                input.form-control.text-white.bg-dark.bg-opacity-50#validate_email(type='email' name="email" placeholder="Email")
+                                #emailHelp.form-text We&apos;ll never share your email with anyone else.
+                                div.invalid-feedback Please enter a valid email address
+                            .mb-3
+                                input.form-control.text-white.bg-dark.bg-opacity-50(type='password' name="password" placeholder="Password")
+                            button.btn.btn-outline-secondary.col-auto#submit(type='submit' name='submit') Submit
+                    br
+                    block footer
+                        p Do not have an account!! Click 
+                            a.text-decoration-none(href='/Signup') here 
+                            | to create your free account
+
+block script
+    script(src='../static/index/script.js')

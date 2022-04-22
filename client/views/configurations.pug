@@ -1,0 +1,71 @@
+extends layout.pug 
+
+block header 
+    style.
+        .dropdown-menu {
+            max-height: 280px;
+            overflow-y: auto;
+        }
+block body
+
+    div(style='height: 100vh;background-color:#ebebeb')
+        ul.d-flex.nav.me-4.pe-3.pt-5#page-bar
+            button.btn.btn-success.me-5.p-0(data-bs-toggle='offcanvas' href='#offcanvasExample' role='button' aria-controls='offcanvasExample' type='button' style='height:30px;') Add
+            div.ms-auto#start_btn
+                button.btn.btn-dark.btn-lg#start(type='button') Start
+
+        .bg-light.my-3.mx-5.p-3
+            .row 
+                .col-6
+                    #adobe-dc-view(style='height: 360px; width: 500px;')
+                .col-4.d-flex.align-items-center.justify-content-center
+                    .row
+                        .col-auto.p-1
+                            button.btn.btn-outline-secondary#minutes(type='button' data-bs-toggle='dropdown' aria-expanded='false' style="width: 120px;height: 120px;")
+                                .display-4 05
+                                .mt-3(style="font-size:10px") MINUTES
+                            ul.dropdown-menu(style="cursor:pointer;")
+                                - let i = 0
+                                while i < 30
+                                    li 
+                                        a.dropdown-item(onclick=`select_time('minutes', ${i})`)
+                                            if i < 10
+                                                div.display-4 0#{i}
+                                            else 
+                                                div.display-4 #{i}
+                                    - i++
+                        .col-auto.p-1.mt-3.display-3 :
+                        .col-auto.p-1
+                            button.btn.btn-outline-secondary#seconds(type='button' data-bs-toggle='dropdown' aria-expanded='false' style="width: 120px;height: 120px;")
+                                .display-4 00
+                                .mt-3(style="font-size:10px") SECONDS
+                            ul.dropdown-menu(style="cursor:pointer;")
+                                - let j = 0
+                                while j < 60
+                                    li 
+                                        a.dropdown-item(onclick=`select_time('seconds', ${j})`)
+                                            if j < 10
+                                                div.display-4 0#{j}
+                                            else 
+                                                div.display-4 #{j}
+                                    - j++
+    #offcanvasExample.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
+        .offcanvas-header
+            h5#offcanvasExampleLabel.offcanvas-title Add answer to your project
+            button.btn-close.text-reset(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        .offcanvas-body
+            #add_answer
+                select.form-select.answer-form.my-2(name='answer')
+                    option(value='a') A
+                    option(value='b') B
+                    option(value='c') C
+                    option(value='d') D
+
+            button.btn.btn-dark.my-3#add(type='button') Add
+            br
+            button.btn.btn-dark.my-3#submit_answer(type='button') Submit
+                    
+block script 
+    script(src='https://documentcloud.adobe.com/view-sdk/main.js')
+    script(src='/static/configurations/script.js')
+        

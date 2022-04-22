@@ -1,0 +1,25 @@
+extends index.pug
+
+block form
+            form.row.g-3.needs-validation(action='/projectRoutes/signup' method='post' Content-Type='application/x-www-form-urlencoded' novalidate='' )
+                .mb-3
+                    input.form-control.text-white.bg-dark.bg-opacity-50#validate_username(type='text' name="username" placeholder="Username")
+                    .form-text Username should be alpha numeric. It should be greater than 3 and less than 10
+                    div.invalid-feedback Please enter a valid username
+                .mb-3
+                    input.form-control.text-white.bg-dark.bg-opacity-50#validate_email(type='email' name="email" placeholder="Email")
+                    #emailHelp.form-text We&apos;ll never share your email with anyone else.
+                    div.invalid-feedback Please enter a valid email address
+                .mb-3
+                    input.form-control.text-white.bg-dark.bg-opacity-50#validate_password(type='password' name="password" placeholder="Password")
+
+                button.btn.btn-outline-secondary.col-auto#submit(type='submit' name='submit') Submit
+
+block footer
+        p Already have an account!! Click 
+            a.text-decoration-none(href='/') here 
+            | to sign in
+
+block script
+    script(src='../static/signup/script.js')
+        
