@@ -4,12 +4,13 @@ const path = require('path');
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser')
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 3000
 
 const projectRoutes = require("./api/routes/projectRoutes");
 const dashboardRoutes = require("./client/routes/dashboardRoutes");
 const User = require("./api/routes/user_routes");
 
+//const uri = process.env.MONGODB_URI;
 mongoose.connect('process.env.MONGODB_URI || mongodb://localhost/MyProject', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once('open', function () {
