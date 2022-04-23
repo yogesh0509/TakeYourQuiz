@@ -1,8 +1,2 @@
 node_modules/
-uploads/
 *.env
-download_result.php
-Input_Quiz_Data.html
-Quiz.html
-Select_quiz.html
-Test.html
