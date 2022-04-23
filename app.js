@@ -17,7 +17,7 @@ db.once('open', function () {
   console.log("Connected");
 })
 
-app.use('/static', express.static('./client/static'));
+app.use('/static', express.static('client/static'));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './client/views'));
 
