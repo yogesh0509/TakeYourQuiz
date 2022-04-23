@@ -88,7 +88,6 @@ function clear_result() {
 }
 
 function show_pdf(question_url, project_name) {
-    console.log(project_name);
     let index = question_url.indexOf("static");
     let file_url = question_url.replaceAll("\\", "/").slice(index);
     if (window.AdobeDC) {
@@ -144,13 +143,11 @@ function page_bar(answer_map) {
 (async () => {
     const users = await fetch_result();
 
-    console.log(users);
     let answer_map = new Map();
 
     for(let key in users.data.result.answer){
         answer_map.set(key, JSON.parse(users.data.result.answer[key]));
     }
-    console.log(answer_map);
     document.getElementById("score_marks").innerHTML = users.data.result.total_marks;
     document.getElementById("score_correct_questions").innerHTML = users.data.result.total_correct_questions;
     Promise.all([show_pdf(users.data.configurations.pdf_url, project_name()),

@@ -21,7 +21,6 @@ async function save_config(){
     }
     const response = await fetch("../../projectRoutes/update_config", params);
     const users = await response.json();
-    console.log(users);
 }
 let return_AuthHeader = refresh_token();
 let min = 5, sec = 0;
@@ -64,7 +63,6 @@ submit_answer.addEventListener('click', () => {
 
     url = "/projectRoutes/Add_Answer";
     return_AuthHeader.then((token_header) => {
-        console.log(token_header);
         let data = {
             "answer": answer,
             "table_name": table_name
@@ -79,7 +77,6 @@ submit_answer.addEventListener('click', () => {
         }
         fetch(url, params).then(response => response.json())
             .then(data => {
-                console.log(data);
             })
     });
 })
@@ -88,7 +85,6 @@ function select_time(id, value) {
     if (id === 'minutes') { min = value; }
     if (id === 'seconds') { sec = value; }
     let container = document.getElementById(id);
-    console.log(id, value, min, sec);
     if (value < 10) {
         value = '0' + value;
     }
@@ -99,15 +95,12 @@ document.getElementById("start").addEventListener('click', () => {
     save_config();
     let index_end = window.location.href.indexOf('configurations');
     let redirect = window.location.href.slice(0, index_end)+ 'start';
-    console.log(redirect);
-    //let redirect = window.location.href ;
     location.href = redirect;
 })
 
 function show_pdf(question_url, project_name) {
     let index = question_url.indexOf("static");
     let file_url = question_url.replaceAll("\\", "/").slice(index);
-    console.log(file_url);
     if (window.AdobeDC) {
         var adobeDCView = new AdobeDC.View({ clientId: "a9362a167fd147fa94dc1d82438a26a4", divId: "adobe-dc-view" });
         adobeDCView.previewFile({
@@ -137,7 +130,6 @@ function page_bar(length) {
 
 (async () => {
     const token_header = await return_AuthHeader;
-    console.log(token_header);
 
     let string = window.location.href;
     let index_start = string.indexOf("dashboard");
@@ -154,6 +146,5 @@ function page_bar(length) {
     }
     const response = await fetch("../../projectRoutes/fetch_config", params);
     const users = await response.json();
-    console.log(users);
     Promise.all([show_pdf(users.data.configurations.pdf_url, users.data.configurations.project_name), page_bar(users.data.configurations.total_questions)]);
 })();

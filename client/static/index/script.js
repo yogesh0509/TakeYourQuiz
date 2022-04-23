@@ -1,4 +1,3 @@
-console.log("hello");
 const submit = document.getElementById('submit');
 const email = document.getElementById('validate_email');
 const forms = document.querySelectorAll('.needs-validation');
@@ -37,9 +36,7 @@ Array.prototype.slice.call(forms).forEach((form) => {
         else {
             event.preventDefault();
             event.stopPropagation();
-            //form.classList.add('was-validated');
         }
-        console.log(email);
 
     })
 })

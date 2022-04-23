@@ -27,7 +27,6 @@ function form_data() {
 
     url = "/projectRoutes/InsertData";
     return_AuthHeader.then((token_header) => {
-        console.log(token_header);
         params = {
             method: 'post',
             headers: {
@@ -37,7 +36,6 @@ function form_data() {
         }
         fetch(url, params).then(response => response.json())
             .then(data => {
-                console.log(data);
                 if(!data.error){
                     location.reload();
                 }
