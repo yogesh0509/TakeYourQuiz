@@ -4,7 +4,7 @@ const path = require('path');
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 
 const projectRoutes = require("./api/routes/projectRoutes");
 const dashboardRoutes = require("./client/routes/dashboardRoutes");
