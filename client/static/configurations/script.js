@@ -3,14 +3,14 @@ async function refresh_token() {
     const users = await response.json();
     return users;
 }
-async function save_config(){
+async function save_config() {
     const token_header = await return_AuthHeader;
 
     let string = window.location.href;
     let index_start = string.indexOf("dashboard");
     let index_end = string.indexOf("configurations");
-    let table_name = string.slice(index_start + 10, index_end-1);
-    data = { 'table_name': table_name , 'min':min, 'sec':sec};
+    let table_name = string.slice(index_start + 10, index_end - 1);
+    data = { 'table_name': table_name, 'min': min, 'sec': sec };
     params = {
         method: 'post',
         headers: {
@@ -54,7 +54,7 @@ submit_answer.addEventListener('click', () => {
     let string = window.location.href;
     let index_start = string.indexOf("dashboard");
     let index_end = string.indexOf("configurations");
-    let table_name = string.slice(index_start + 10, index_end-1);
+    let table_name = string.slice(index_start + 10, index_end - 1);
 
     answer = [];
     document.querySelectorAll('.answer-form').forEach((ele) => {
@@ -94,20 +94,24 @@ function select_time(id, value) {
 document.getElementById("start").addEventListener('click', () => {
     save_config();
     let index_end = window.location.href.indexOf('configurations');
-    let redirect = window.location.href.slice(0, index_end)+ 'start';
+    let redirect = window.location.href.slice(0, index_end) + 'start';
     location.href = redirect;
 })
 
 function show_pdf(question_url, project_name) {
-    let index = question_url.indexOf("static");
-    let file_url = question_url.replaceAll("\\", "/").slice(index);
-    if (window.AdobeDC) {
-        var adobeDCView = new AdobeDC.View({ clientId: "a9362a167fd147fa94dc1d82438a26a4", divId: "adobe-dc-view" });
-        adobeDCView.previewFile({
-            content: { location: { url: '/' + file_url } },
-            metaData: { fileName: project_name + ".pdf" }
-        }, { embedMode: "SIZED_CONTAINER" });
-    }
+    
+    fetch("/projectRoutes/adobe_api_key").then(response => response.json())
+        .then(data => {
+            let index = question_url.indexOf("static");
+            let file_url = question_url.replaceAll("\\", "/").slice(index);
+            if (window.AdobeDC) {
+                var adobeDCView = new AdobeDC.View({ clientId: data.key, divId: "adobe-dc-view" });
+                adobeDCView.previewFile({
+                    content: { location: { url: '/' + file_url } },
+                    metaData: { fileName: project_name + ".pdf" }
+                }, { embedMode: "SIZED_CONTAINER" });
+            }
+        })
 }
 
 function page_bar(length) {
@@ -134,7 +138,7 @@ function page_bar(length) {
     let string = window.location.href;
     let index_start = string.indexOf("dashboard");
     let index_end = string.indexOf("configurations");
-    let table_name = string.slice(index_start + 10, index_end-1);
+    let table_name = string.slice(index_start + 10, index_end - 1);
     data = { 'table_name': table_name };
     params = {
         method: 'post',

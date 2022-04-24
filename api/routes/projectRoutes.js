@@ -8,6 +8,13 @@ const User = require("./user_routes");
 const dashboard = require("./dashboard");
 const project = require("./project");
 
+router.get("/adobe_api_key", (req, res, next)=>{
+    const api_key = process.env.ADOBE_API_KEY || "a9362a167fd147fa94dc1d82438a26a4";
+    res.status(200).json({
+        key: api_key
+    })
+});
+
 router.get("/load_data", check_auth, dashboard.load_data);
 router.post("/InsertData", check_auth, upload_files, dashboard.new_chapter);
 router.post("/fetch_config", check_auth, project.fetch_config);

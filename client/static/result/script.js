@@ -88,15 +88,18 @@ function clear_result() {
 }
 
 function show_pdf(question_url, project_name) {
-    let index = question_url.indexOf("static");
-    let file_url = question_url.replaceAll("\\", "/").slice(index);
-    if (window.AdobeDC) {
-        var adobeDCView = new AdobeDC.View({ clientId: "a9362a167fd147fa94dc1d82438a26a4", divId: "adobe-dc-view" });
-        adobeDCView.previewFile({
-            content: { location: { url: '/' + file_url } },
-            metaData: { fileName: project_name + ".pdf" }
-        }, { embedMode: "SIZED_CONTAINER" });
-    }
+    fetch("/projectRoutes/adobe_api_key").then(response => response.json())
+        .then(data => {
+            let index = question_url.indexOf("static");
+            let file_url = question_url.replaceAll("\\", "/").slice(index);
+            if (window.AdobeDC) {
+                var adobeDCView = new AdobeDC.View({ clientId: data.key, divId: "adobe-dc-view" });
+                adobeDCView.previewFile({
+                    content: { location: { url: '/' + file_url } },
+                    metaData: { fileName: project_name + ".pdf" }
+                }, { embedMode: "SIZED_CONTAINER" });
+            }
+        })
 }
 
 function page_bar(answer_map) {
