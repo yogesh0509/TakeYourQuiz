@@ -19,6 +19,7 @@ exports.new_chapter = (req, res, next) => {
             });
         })
         .catch(err => {
+            console.log(error);
             res.status(500).json({
                 message: "Some error occured",
                 error: err
@@ -42,8 +43,6 @@ exports.load_data = (req, res, next) => {
                 message: "Success",
                 data: arr
             });
-            next();
-
         })
         .catch(err => {
             res.status(500).json({

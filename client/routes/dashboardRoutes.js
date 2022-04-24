@@ -17,7 +17,6 @@ router.get('/', (req, res, next) => {
             let result = JSON.parse(response);
             console.log(result.data);
             res.render('dashboard', { Dashboard_state: 'active', load_data: result.data });
-            next();
         })
         .catch(error => {
             console.log(error);
