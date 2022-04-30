@@ -77,6 +77,7 @@ submit_answer.addEventListener('click', () => {
         }
         fetch(url, params).then(response => response.json())
             .then(data => {
+                document.getElementsByClassName("btn-close")[0].click();
             })
     });
 })
