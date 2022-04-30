@@ -214,12 +214,10 @@ function save_result() {
 function show_pdf(question_url, project_name) {
     fetch("/projectRoutes/adobe_api_key").then(response => response.json())
         .then(data => {
-            let index = question_url.indexOf("static");
-            let file_url = question_url.replaceAll("\\", "/").slice(index);
             if (window.AdobeDC) {
                 var adobeDCView = new AdobeDC.View({ clientId: data.key, divId: "adobe-dc-view" });
                 adobeDCView.previewFile({
-                    content: { location: { url: '/' + file_url } },
+                    content: { location: { url: question_url } },
                     metaData: { fileName: project_name + ".pdf" }
                 }, { embedMode: "SIZED_CONTAINER" });
             }

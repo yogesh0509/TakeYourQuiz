@@ -7,7 +7,7 @@ exports.new_chapter = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         configurations: {
             project_name: req.body.table_name,
-            pdf_url: req.file.path
+            pdf_url: req.file.location
         },
         users: res.locals.user._id
     });
@@ -19,7 +19,6 @@ exports.new_chapter = (req, res, next) => {
             });
         })
         .catch(err => {
-            console.log(error);
             res.status(500).json({
                 message: "Some error occured",
                 error: err
