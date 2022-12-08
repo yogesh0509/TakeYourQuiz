@@ -40,7 +40,7 @@ block content
                         - const projects = load_data
                         each project in projects
                             tr(style="border-bottom: 1px solid #ebebeb; border-collapse: collapse;")
-                            td.p-3 #{project.project_name.replaceAll('_', ' ').toUpperCase()}
+                            td.p-3 #{project.project_name}
                             //- td.p-3
                             //-     span.badge.bg-primary.answer_badge(id=project.project_name data-bs-toggle='offcanvas' href='#offcanvasExample' role='button' aria-controls='offcanvasExample') Add
                             td.p-3 
